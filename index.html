@@ -188,24 +188,266 @@
       line-height: 1.6;
     }
 
-    /* ── Screenshot ─────────────────────────────── */
-    .screenshot-wrap {
-      text-align: center;
-      margin: 48px 0;
+    /* ── Live Preview Panel ──────────────────────── */
+    .preview-wrap {
+      margin: 48px auto;
+      max-width: 440px;
     }
 
-    .screenshot-wrap img {
-      max-width: 100%;
-      border: 1px solid var(--border-bright);
-      box-shadow: 0 0 40px rgba(0,255,65,0.08);
-    }
-
-    .screenshot-caption {
+    .preview-caption {
       font-size: 11px;
       color: var(--green-dim);
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-top: 12px;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* Panel mockup — mirrors the real extension */
+    .mock-panel {
+      background: var(--bg);
+      border: 1px solid var(--border-bright);
+      border-radius: 2px;
+      font-family: var(--font);
+      color: var(--green);
+      box-shadow: 0 0 30px rgba(0,255,65,0.06), 0 0 60px rgba(0,255,65,0.03), inset 0 0 80px rgba(0,255,65,0.015);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mock-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+      pointer-events: none;
+      z-index: 10;
+      border-radius: 2px;
+    }
+
+    .mp-header {
+      padding: 14px 20px 12px;
+      border-bottom: 1px solid var(--border-bright);
+    }
+
+    .mp-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .mp-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mp-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0,255,65,0.3);
+    }
+
+    .mp-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px rgba(0,255,65,0.7);
+    }
+
+    .mp-btns { display: flex; gap: 5px; }
+
+    .mp-btn {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--border-bright);
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--green-dim);
+      background: transparent;
+    }
+
+    .mp-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+      margin: 10px 0;
+    }
+
+    .mp-ticker {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-shadow: 0 0 14px rgba(0,255,65,0.35);
+      line-height: 1.1;
+    }
+
+    .mp-ticker-sub {
+      font-size: 12px;
+      color: var(--green-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+
+    .mp-price {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      line-height: 1;
+      text-shadow: 0 0 24px rgba(0,255,65,0.4), 0 0 48px rgba(0,255,65,0.15);
+      margin-top: 7px;
+    }
+
+    .mp-price-sub {
+      font-size: 11px;
+      color: var(--green-dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: 14px;
+    }
+
+    .mp-section {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mp-section:last-child { border-bottom: none; }
+
+    .mp-section-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green-dim);
+      margin-bottom: 10px;
+      text-shadow: 0 0 4px rgba(0,255,65,0.15);
+    }
+
+    .mp-summary {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--green);
+      opacity: 0.85;
+      margin-bottom: 14px;
+    }
+
+    .mp-attr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .mp-attr:first-of-type { border-top: 1px solid var(--border-bright); padding-top: 10px; }
+
+    .mp-attr-val {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .mp-attr-lbl {
+      font-size: 11px;
+      color: var(--green-dim);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .mp-led {
+      width: 12px;
+      height: 12px;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .mp-led-red { background: var(--red); box-shadow: 0 0 8px rgba(255,51,68,0.6); }
+    .mp-led-green { background: var(--green); box-shadow: 0 0 8px rgba(0,255,65,0.6); }
+    .mp-led-amber { background: var(--amber); box-shadow: 0 0 8px rgba(255,170,0,0.5); }
+    .mp-led-cyan { background: var(--cyan); box-shadow: 0 0 8px rgba(0,221,187,0.5); }
+
+    .mp-level {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 0;
+    }
+
+    .mp-level-label {
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 110px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .mp-level-value {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mp-bar-wrap {
+      flex: 1;
+      min-width: 0;
+      height: 6px;
+      background: rgba(0,255,65,0.06);
+      overflow: hidden;
+    }
+
+    .mp-bar {
+      height: 100%;
+      position: relative;
+    }
+
+    .mp-bar::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(90deg, transparent 0px, transparent 4px, var(--bg) 4px, var(--bg) 6px);
+    }
+
+    .mp-guidance {
+      padding: 8px 12px;
+      margin-bottom: 5px;
+      border-radius: 1px;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0.3px;
+    }
+
+    .mp-guidance:last-child { margin-bottom: 0; }
+
+    .mp-g-regime { background: rgba(0,255,65,0.04); border-left: 3px solid var(--green); color: var(--green); }
+    .mp-g-warning { background: rgba(255,170,0,0.04); border-left: 3px solid var(--amber); color: var(--amber); }
+
+    .mp-scenario {
+      padding: 4px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0.3px;
+    }
+
+    .mp-footer {
+      padding: 10px 20px;
+      border-top: 1px solid var(--border-bright);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--green-dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     /* ── Install Steps ──────────────────────────── */
@@ -362,10 +604,121 @@
       </div>
     </div>
 
-    <!-- ═══════ SCREENSHOT ═══════ -->
-    <div class="screenshot-wrap">
-      <img src="screenshot.png" alt="OD Companion panel showing live trading insights on OptionDepth" />
-      <p class="screenshot-caption">Live panel on app.optionsdepth.com</p>
+    <!-- ═══════ LIVE PREVIEW ═══════ -->
+    <div class="preview-wrap">
+      <div class="mock-panel">
+        <div class="mp-header">
+          <div class="mp-header-top">
+            <div class="mp-title-row"><span class="mp-title">OD Companion</span><span class="mp-dot"></span></div>
+            <div class="mp-btns"><span class="mp-btn">&#x27F2;</span><span class="mp-btn">&minus;</span></div>
+          </div>
+          <div class="mp-divider"></div>
+          <div style="display:flex;align-items:baseline;margin-bottom:2px;">
+            <span class="mp-ticker">SPX</span><span class="mp-ticker-sub">S&amp;P 500 Index</span>
+          </div>
+          <div style="display:flex;align-items:baseline;">
+            <span class="mp-price">6940</span><span class="mp-price-sub">Nearest strike &middot; 10:53:54 AM</span>
+          </div>
+        </div>
+
+        <!-- Current Gamma Environment -->
+        <div class="mp-section">
+          <div class="mp-section-header">Current Gamma Environment</div>
+          <p class="mp-summary">We're in an accelerating environment where moves are more likely to follow through. Flows are suppressive, creating headwinds for rallies and adding fuel to selloffs. Positioning is heavy &mdash; expect levels to be respected. Don't fight the move. Let runners run.</p>
+          <div class="mp-attr">
+            <div><div class="mp-attr-val" style="color:var(--red)">Negative</div><div class="mp-attr-lbl">Gamma regime</div></div>
+            <span class="mp-led mp-led-red"></span>
+          </div>
+          <div class="mp-attr">
+            <div><div class="mp-attr-val" style="color:var(--red)">Suppressive</div><div class="mp-attr-lbl">Charm influence</div></div>
+            <span class="mp-led mp-led-red"></span>
+          </div>
+          <div class="mp-attr">
+            <div><div class="mp-attr-val" style="color:var(--amber)">High</div><div class="mp-attr-lbl">Volatility</div></div>
+            <span class="mp-led mp-led-amber"></span>
+          </div>
+          <div class="mp-attr">
+            <div><div class="mp-attr-val" style="color:var(--cyan)">Hedging with price</div><div class="mp-attr-lbl">Dealer behavior</div></div>
+            <span class="mp-led mp-led-cyan"></span>
+          </div>
+          <div class="mp-attr">
+            <div><div class="mp-attr-val" style="color:var(--green)">Downside cushioned</div><div class="mp-attr-lbl">Directional bias</div></div>
+            <span class="mp-led mp-led-green"></span>
+          </div>
+        </div>
+
+        <!-- Key Levels -->
+        <div class="mp-section">
+          <div class="mp-section-header">Key Levels</div>
+          <div class="mp-level">
+            <span class="mp-level-label">Resistance</span>
+            <span class="mp-level-value" style="color:var(--red);text-shadow:0 0 8px rgba(255,51,68,0.25)">6945-6955</span>
+            <span class="mp-bar-wrap"><span class="mp-bar" style="width:90%;background:var(--red)"></span></span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Resistance 2</span>
+            <span class="mp-level-value" style="color:var(--red);text-shadow:0 0 8px rgba(255,51,68,0.25)">6990-7000</span>
+            <span class="mp-bar-wrap"><span class="mp-bar" style="width:85%;background:var(--red)"></span></span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Resistance 3</span>
+            <span class="mp-level-value" style="color:var(--red);text-shadow:0 0 8px rgba(255,51,68,0.25)">6975</span>
+            <span class="mp-bar-wrap"><span class="mp-bar" style="width:25%;background:var(--red)"></span></span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Support</span>
+            <span class="mp-level-value" style="color:var(--green);text-shadow:0 0 8px rgba(0,255,65,0.25)">6925-6935</span>
+            <span class="mp-bar-wrap"><span class="mp-bar" style="width:45%;background:var(--green)"></span></span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Support 2</span>
+            <span class="mp-level-value" style="color:var(--green);text-shadow:0 0 8px rgba(0,255,65,0.25)">6870-6885</span>
+            <span class="mp-bar-wrap"><span class="mp-bar" style="width:40%;background:var(--green)"></span></span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Support 3</span>
+            <span class="mp-level-value" style="color:var(--green);text-shadow:0 0 8px rgba(0,255,65,0.25)">6860</span>
+            <span class="mp-bar-wrap"><span class="mp-bar" style="width:25%;background:var(--green)"></span></span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Magnet</span>
+            <span class="mp-level-value" style="color:var(--amber);text-shadow:0 0 8px rgba(255,170,0,0.25)">6940</span>
+          </div>
+          <div class="mp-level">
+            <span class="mp-level-label">Flip level</span>
+            <span class="mp-level-value" style="color:var(--cyan);text-shadow:0 0 8px rgba(0,221,187,0.25)">6978</span>
+            <span style="font-size:10px;color:var(--green-dim);letter-spacing:1px;text-transform:uppercase">behavior changes here</span>
+          </div>
+        </div>
+
+        <!-- Guidance -->
+        <div class="mp-section">
+          <div class="mp-section-header">Guidance</div>
+          <div class="mp-guidance mp-g-regime">Volatile structure &mdash; moves follow through. Go with momentum.</div>
+          <div class="mp-guidance mp-g-warning">At 6925-6935 support but environment is weak &mdash; likely breaks. Don't catch the knife.</div>
+        </div>
+
+        <!-- Scenarios -->
+        <div class="mp-section">
+          <div class="mp-section-header">Scenarios</div>
+          <div class="mp-scenario" style="color:var(--green)">If 6925-6935 holds &rarr; look for move toward 6945-6955</div>
+          <div class="mp-scenario" style="color:var(--red)">If 6925-6935 breaks &rarr; watch 6870-6885 as next floor</div>
+          <div class="mp-scenario" style="color:var(--cyan)">Above 6945-6955 &rarr; next ceiling at 6990-7000</div>
+        </div>
+
+        <!-- Recent Changes -->
+        <div class="mp-section">
+          <div class="mp-section-header">Recent Changes</div>
+          <div style="font-size:12px;color:var(--green-dim);padding:3px 0;letter-spacing:0.5px">&rsaquo; Watching for changes&hellip;</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mp-footer">
+          <span>Price: <span style="border:1px solid var(--border-bright);padding:3px 8px;color:var(--green-dim)">auto</span></span>
+          <span>Updates every 30s</span>
+        </div>
+      </div>
+      <p class="preview-caption">Live panel on app.optionsdepth.com</p>
     </div>
 
     <div class="divider"></div>
